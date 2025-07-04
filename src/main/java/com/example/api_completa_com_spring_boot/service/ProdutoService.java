@@ -1,10 +1,10 @@
 package com.example.api_completa_com_spring_boot.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.example.api_completa_com_spring_boot.exception.RecursoNaoEncontradoException;
 import com.example.api_completa_com_spring_boot.model.Produto;
 import com.example.api_completa_com_spring_boot.repository.ProdutoRepository;
 
@@ -21,8 +21,10 @@ public class ProdutoService {
         return produtoRepository.findAll();
     }
 
-    public Optional<Produto> buscarProdId(Long id) {
-        return produtoRepository.findById(id);
+    public Produto buscarProdId(Long id) {
+        return produtoRepository.findById(id)
+                .orElseThrow(() -> new RecursoNaoEncontradoException(
+                        "Produto não encontrado com o ID: " + id));
     }
 
     public Produto salvarProduto(Produto produto) {
@@ -30,6 +32,9 @@ public class ProdutoService {
     }
 
     public void deletarProduto(Long id) {
+        if (!produtoRepository.existsById(id)) {
+            throw new RecursoNaoEncontradoException("Produto não encontrado com o ID: " + id);
+        }
         produtoRepository.deleteById(id);
     }
 

@@ -3,11 +3,13 @@ package com.example.api_completa_com_spring_boot.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.api_completa_com_spring_boot.exception.RecursoNaoEncontradoException;
 import com.example.api_completa_com_spring_boot.model.Produto;
 import com.example.api_completa_com_spring_boot.service.ProdutoService;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,10 +33,9 @@ public class ProdutoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Produto> buscarProduto(@PathVariable Long id) {
-        return produtoService.buscarProdId(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<?> buscarProduto(@PathVariable Long id) {
+        Produto produto = produtoService.buscarProdId(id);
+        return ResponseEntity.ok(produto);
     }
 
     @PostMapping

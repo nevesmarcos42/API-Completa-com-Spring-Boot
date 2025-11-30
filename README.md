@@ -1,5 +1,11 @@
 # API Completa com Spring Boot
 
+![Java](https://img.shields.io/badge/Java-17-orange?style=for-the-badge&logo=java)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.3-brightgreen?style=for-the-badge&logo=springboot)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-blue?style=for-the-badge&logo=postgresql)
+![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker)
+![JWT](https://img.shields.io/badge/JWT-Auth-000000?style=for-the-badge&logo=jsonwebtokens)
+
 API RESTful completa para gerenciamento de produtos com autenticação JWT, proteção de rotas e containerização Docker. Desenvolvida com Spring Boot e PostgreSQL seguindo boas práticas de arquitetura.
 
 [Funcionalidades](#funcionalidades) • [Tecnologias](#tecnologias) • [Instalação](#instalação) • [API](#documentação-da-api) • [Docker](#docker)
@@ -14,9 +20,11 @@ API RESTful completa para gerenciamento de produtos com autenticação JWT, prot
 - [Arquitetura](#arquitetura)
 - [Instalação](#instalação)
 - [Docker](#docker)
+- [Uso](#uso)
 - [Documentação da API](#documentação-da-api)
 - [Autenticação JWT](#autenticação-jwt)
 - [Configuração](#configuração)
+- [Regras de Negócio](#regras-de-negócio)
 - [Contribuindo](#contribuindo)
 - [Licença](#licença)
 
@@ -251,6 +259,73 @@ services:
 
 ---
 
+## Uso
+
+### Primeiro Acesso
+
+1. Acesse a aplicação: `http://localhost:8080`
+2. Registre um usuário:
+   - Envie um POST para `/auth/register`
+   - Preencha username e password
+   - Faça login em `/auth/login` para obter o token JWT
+3. Use o token JWT para acessar os endpoints protegidos
+
+### Funcionalidades Principais
+
+#### Gerenciar Produtos
+
+```bash
+# Listar todos os produtos
+curl -X GET http://localhost:8080/produtos \
+  -H "Authorization: Bearer SEU_TOKEN_JWT"
+
+# Criar novo produto
+curl -X POST http://localhost:8080/produtos \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer SEU_TOKEN_JWT" \
+  -d '{
+    "nome": "Produto Teste",
+    "descricao": "Descrição do produto",
+    "preco": 100.00,
+    "quantidade": 50
+  }'
+
+# Atualizar produto
+curl -X PUT http://localhost:8080/produtos/1 \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer SEU_TOKEN_JWT" \
+  -d '{
+    "nome": "Produto Atualizado",
+    "preco": 150.00
+  }'
+
+# Deletar produto
+curl -X DELETE http://localhost:8080/produtos/1 \
+  -H "Authorization: Bearer SEU_TOKEN_JWT"
+```
+
+#### Autenticar Usuários
+
+```bash
+# Registrar novo usuário
+curl -X POST http://localhost:8080/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "username": "meuusuario",
+    "password": "minhasenha123"
+  }'
+
+# Fazer login
+curl -X POST http://localhost:8080/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "username": "meuusuario",
+    "password": "minhasenha123"
+  }'
+```
+
+---
+
 ## Documentação da API
 
 ### Principais Endpoints
@@ -405,6 +480,31 @@ Você pode utilizar:
 - **Insomnia** - [Download](https://insomnia.rest/)
 - **cURL** - Linha de comando
 - **Thunder Client** - Extensão do VS Code
+
+---
+
+## Regras de Negócio
+
+### Produtos
+
+- Nome do produto deve ser único
+- Preço deve ser maior que zero
+- Quantidade não pode ser negativa
+- Todos os campos são obrigatórios (nome, descrição, preço, quantidade)
+
+### Usuários
+
+- Username deve ser único
+- Password mínimo: 6 caracteres
+- Autenticação obrigatória para todos os endpoints de produtos
+- Token JWT expira após período configurado
+
+### Autenticação
+
+- Token JWT deve ser enviado no header Authorization
+- Formato: `Bearer {token}`
+- Tokens inválidos ou expirados retornam erro 401 Unauthorized
+- Endpoint de registro e login são públicos (não requerem autenticação)
 
 ---
 

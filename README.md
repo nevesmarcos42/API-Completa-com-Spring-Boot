@@ -2,23 +2,23 @@
 
 API RESTful completa para gerenciamento de produtos com autenticação JWT, proteção de rotas e containerização Docker. Desenvolvida com Spring Boot e PostgreSQL seguindo boas práticas de arquitetura.
 
-[Funcionalidades](#-funcionalidades) • [Tecnologias](#-tecnologias) • [Instalação](#-instalação) • [API](#-documentação-da-api) • [Docker](#-docker)
+[Funcionalidades](#funcionalidades) • [Tecnologias](#tecnologias) • [Instalação](#instalação) • [API](#documentação-da-api) • [Docker](#docker)
 
 ---
 
-## 📑 Índice
+## Índice
 
 - [Sobre o Projeto](#sobre-o-projeto)
-- [Funcionalidades](#-funcionalidades)
-- [Tecnologias](#-tecnologias)
-- [Arquitetura](#-arquitetura)
-- [Instalação](#-instalação)
-- [Docker](#-docker)
-- [Documentação da API](#-documentação-da-api)
-- [Autenticação JWT](#-autenticação-jwt)
-- [Configuração](#-configuração)
-- [Contribuindo](#-contribuindo)
-- [Licença](#-licença)
+- [Funcionalidades](#funcionalidades)
+- [Tecnologias](#tecnologias)
+- [Arquitetura](#arquitetura)
+- [Instalação](#instalação)
+- [Docker](#docker)
+- [Documentação da API](#documentação-da-api)
+- [Autenticação JWT](#autenticação-jwt)
+- [Configuração](#configuração)
+- [Contribuindo](#contribuindo)
+- [Licença](#licença)
 
 ---
 
@@ -38,7 +38,7 @@ Esta é uma API RESTful robusta construída com **Spring Boot** e **PostgreSQL**
 
 ---
 
-## 🚀 Funcionalidades
+## Funcionalidades
 
 ### Backend (API REST)
 
@@ -65,7 +65,7 @@ Esta é uma API RESTful robusta construída com **Spring Boot** e **PostgreSQL**
 
 ---
 
-## 🛠️ Tecnologias
+## Tecnologias
 
 ### Backend
 
@@ -87,7 +87,7 @@ Esta é uma API RESTful robusta construída com **Spring Boot** e **PostgreSQL**
 
 ---
 
-## 🏗️ Arquitetura
+## Arquitetura
 
 ### Backend - Estrutura de Pacotes
 
@@ -133,7 +133,7 @@ src/main/java/com/example/api_completa_com_spring_boot/
 
 ---
 
-## 📥 Instalação
+## Instalação
 
 ### Pré-requisitos
 
@@ -155,7 +155,7 @@ cd API-Completa-com-Spring-Boot
 docker-compose up -d
 ```
 
-✅ **Pronto!** A aplicação estará rodando em:
+**Pronto!** A aplicação estará rodando em:
 
 - **Backend API**: `http://localhost:8080`
 - **PostgreSQL**: `localhost:5432`
@@ -186,7 +186,7 @@ docker-compose down -v
 
 ---
 
-## 🐳 Docker
+## Docker
 
 ### Arquitetura Docker
 
@@ -251,7 +251,7 @@ services:
 
 ---
 
-## 📚 Documentação da API
+## Documentação da API
 
 ### Principais Endpoints
 
@@ -319,7 +319,7 @@ curl -X GET http://localhost:8080/produtos \
 
 ---
 
-## 🔐 Autenticação JWT
+## Autenticação JWT
 
 Para consumir os endpoints protegidos:
 
@@ -344,7 +344,7 @@ Cliente → GET /produtos (+ Token) → Servidor
 
 ---
 
-## ⚙️ Configuração
+## Configuração
 
 ### Variáveis de Ambiente
 
@@ -397,7 +397,7 @@ mvn spring-boot:run
 
 ---
 
-## 🧪 Testando a API
+## Testando a API
 
 Você pode utilizar:
 
@@ -408,7 +408,7 @@ Você pode utilizar:
 
 ---
 
-## 🤝 Contribuindo
+## Contribuindo
 
 Contribuições são bem-vindas! Siga os passos:
 
@@ -427,7 +427,7 @@ Contribuições são bem-vindas! Siga os passos:
 
 ---
 
-## 📄 Licença
+## Licença
 
 Este projeto é de livre uso para fins educacionais e pode ser utilizado como base para novas aplicações Spring Boot.
 
